@@ -1,0 +1,28 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-security-context
+spec:
+  validationFailureAction: Audit
+  background: true
+  rules:
+    - name: check-security-context
+      match:
+        any:
+          - resources:
+              kinds:
+                - Deployment
+              namespaces:
+                - demo
+      validate:
+        message: "Deployments must run as non-root and disallow privilege escalation."
+        pattern:
+          spec:
+            template:
+              spec:
+                securityContext:
+                  runAsNonRoot: true
+                containers:
+                  - securityContext:
+                      runAsNonRoot: true
+                      allowPrivilegeEscalation: false
