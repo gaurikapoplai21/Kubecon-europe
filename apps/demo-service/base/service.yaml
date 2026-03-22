@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+  namespace: demo
+  labels:
+    app.kubernetes.io/name: demo-service
+    backstage.io/kubernetes-id: demo-service
+    platform.myorg.io/service: demo-service
+spec:
+  selector:
+    app: demo-service
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP

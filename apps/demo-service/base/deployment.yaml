@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-service
+  namespace: demo
+  labels:
+    app.kubernetes.io/name: demo-service
+    backstage.io/kubernetes-id: demo-service
+    platform.myorg.io/service: demo-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-service
+  template:
+    metadata:
+      labels:
+        app: demo-service
+        app.kubernetes.io/name: demo-service
+        backstage.io/kubernetes-id: demo-service
+        platform.myorg.io/service: demo-service
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27.4
+          ports:
+            - containerPort: 80
