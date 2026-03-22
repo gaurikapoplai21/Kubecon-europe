@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-service
+  namespace: demo
+spec:
+  template:
+    metadata:
+      labels:
+        owner: null
+    spec:
+      securityContext: null
+      containers:
+        - name: app
+          image: nginx:latest
+          securityContext: null

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-service
+  namespace: demo
+spec:
+  template:
+    metadata:
+      labels:
+        owner: platform-team
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: app
+          image: nginx:1.27.4
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
