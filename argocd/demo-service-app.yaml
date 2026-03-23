@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/gaurikapoplai21/Kubecon-europe.git
     targetRevision: main
-    path: apps/demo-service/overlays/good
+    path: apps/demo-service/overlays/bad
   destination:
     server: https://kubernetes.default.svc
     namespace: demo
